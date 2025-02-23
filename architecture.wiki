@@ -1,0 +1,7 @@
+API -> Infrastructure -> Core
+dotnet sln add API
+dotnet sln add Infrastructure
+dotnet sln add Core
+
+cd API ->               dotnet add reference ../Infrastructure
+cd Infrastructure ->    dotnet add reference ../Core
