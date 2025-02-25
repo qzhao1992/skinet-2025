@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "skinet-collection",
+		"name": "Skinet API",
+		"description": "API collection for Skinet e-commerce platform",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get All Products",
+					"request": {
+						"method": "GET",
+						"url": "https://localhost:5001/api/products"
+					}
+				},
+				{
+					"name": "Get Product by ID",
+					"request": {
+						"method": "GET",
+						"url": "https://localhost:5001/api/products/{{productId}}",
+						"variable": [
+							{
+								"key": "productId",
+								"value": "1"
+							}
+						]
+					}
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"url": "https://localhost:5001/api/products",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Sample Product\",\n    \"description\": \"A sample product description\",\n    \"price\": 19.99\n}"
+						}
+					}
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"url": "https://localhost:5001/api/products/{{productId}}",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": {{productId}},\n    \"name\": \"Updated Product\",\n    \"description\": \"An updated product description\",\n    \"price\": 29.99\n}"
+						},
+						"variable": [
+							{
+								"key": "productId",
+								"value": "1"
+							}
+						]
+					}
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"url": "https://localhost:5001/api/products/{{productId}}",
+						"variable": [
+							{
+								"key": "productId",
+								"value": "1"
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"url": "https://localhost:5001/api/account/register",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@example.com\",\n    \"displayName\": \"John Doe\",\n    \"password\": \"P@ssw0rd\",\n    \"rememberMe\": true\n}"
+						}
+					}
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"url": "https://localhost:5001/api/account/login",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"P@ssw0rd\",\n    \"rememberMe\": true\n}"
+						}
+					}
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"url": "https://localhost:5001/api/account/refresh-token",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accessToken\": \"your_access_token\",\n    \"refreshToken\": \"your_refresh_token\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Revoke Token",
+					"request": {
+						"method": "POST",
+						"url": "https://localhost:5001/api/account/revoke-token",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\"your_refresh_token\""
+						}
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "accessToken",
+			"value": "your_access_token_here"
+		}
+	]
+}
